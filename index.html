@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <title>EPOCH - Countdown App</title>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="headerTitle">EPOCH</h1>
+      </header>
+
+      <div class="addEpochBtn">
+        <button id="addCountdownBtn">
+          <i class="fa-solid fa-plus"></i> Add Epoch
+        </button>
+      </div>
+
+      <!-- Add Countdown Form (hidden by default) -->
+      <div id="countdownFormContainer" class="hidden">
+        <input type="text" id="countdownName" placeholder="Label your epoch" />
+        <input type="time" id="countdownTime" />
+        <button id="saveCountdownBtn">
+          <i class="fa-solid fa-check"></i> Save
+        </button>
+        <button id="cancelCountdownBtn">
+          <i class="fa-solid fa-ban"></i> Cancel
+        </button>
+      </div>
+
+      <!-- Countdown List -->
+      <ul id="countdownList">
+        <!-- Countdown items will be rendered here dynamically -->
+         <!-- <li class="epochItem">
+  <div class="epochMain">
+    <span class="epochName">Morning Study</span>
+    <button class="editNameBtn"><i class="fa-solid fa-pen"></i></button>
+
+    <button class="zoomBtn"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button>
+  </div>
+
+  <div class="epochTimerRow">
+    <span class="epochTimeLeft">00:45:32</span>
+    <button class="editTimeBtn"><i class="fa-solid fa-clock"></i></button>
+  </div> -->
+</li>
+
+      </ul>
+
+      <!-- Fullscreen / Focus View -->
+      <div id="fullscreenContainer" class="hidden">
+        <div id="fullscreenContent">
+          <h2 id="fullscreenName">Epoch Name</h2>
+          <div id="fullscreenTimer">00:00:00</div>
+          <button id="closeFullscreenBtn">
+            <i class="fa-solid fa-xmark"></i> Close
+          </button>
+        </div>
+        
+      </div>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,306 @@
+:root {
+  --light: white;
+  --dark: black;
+  --primary: #3b82f6;
+  --secondary: #9333ea;
+  --accent: #ff8800;
+  --green: #0dff00;
+  --light-green: #80ff7a;
+  --light-red: #ff7c7c;
+  --warm: #fbbf24;
+  --red: red;
+}
+
+body {
+  background: linear-gradient(
+    120deg,
+    #3b82f6,
+    #404040,
+    #9333ea,
+    #ff00ee,
+
+    #ffffff
+
+  );
+  background-size: 300% 300%;
+  animation: moveBg 5s ease infinite;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  font-family: "Orbitron", "Roboto Mono", "Courier New", Courier, monospace;
+  color: var(--light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes moveBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Header */
+header {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 2.3rem;
+  font-weight: 1000;
+}
+
+.headerTitle{
+  text-shadow: 0 0 10px black, 0 0 20px black, 0 0 30px rgb(0, 0, 0);
+  box-shadow: 0 0 10px black, 0 0 20px rgb(0, 0, 0);
+  border-radius: 10px;
+
+}
+
+
+/* Add Epoch Button - Floating Bottom Right */
+.addEpochBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.addEpochBtn button {
+  background-color: var(--warm);
+  color: var(--light);
+  border: none;
+  padding: 15px 20px;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s, background 0.2s;
+  font-family: "Orbitron", "Courier New",'Courier New', Courier, monospace;
+  line-height: 1.5;
+  font-weight: 1000;
+}
+
+.addEpochBtn button:active {
+  transform: scale(1.1);
+  background: var(--primary);
+}
+
+/* Add Countdown Form */
+#countdownFormContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(0,0,0,0.6);
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 400px;
+}
+
+#countdownFormContainer input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-family: "Orbitron", "Courier New", Courier, monospace;
+  color: var(--dark);
+  font-size: 20px;
+  font-weight: 1000;
+}
+#countdownName::placeholder{
+  opacity: 0.6;
+  
+}
+#countdownFormContainer input:active {
+  transform: scale(1.1);
+  
+}
+
+#countdownFormContainer button {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.3rem;
+  font-weight: 1000;
+  cursor: pointer;
+  transition: 0.2s;
+  font-family: "Orbitron", "Courier New", Courier, monospace;
+  
+}
+
+#saveCountdownBtn {
+  background: var(--light-green);
+  color: var(--dark);
+  transition: all .1s ease;
+  
+}
+
+#saveCountdownBtn:active {
+  background: var(--green); 
+  color: var(--light);
+  transform: scale(1.1);
+}
+
+#cancelCountdownBtn {
+  background: var(--light-red);
+  color: var(--dark);
+  transition: all .1s ease;
+  
+}
+
+#cancelCountdownBtn:active {
+  background: #ff0000;
+  color: var(--light);
+  transform: scale(1.1);
+}
+
+/* Countdown List */
+#countdownList {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  width: 95%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#countdownList li {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+#countdownList li button {
+  background: transparent;
+  border: none;
+  color: var(--light);
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 10px;
+}
+
+/* Fullscreen Countdown Full Screen Here*/ 
+#fullscreenContainer {
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.9);
+  display: none; /*HERE THE DISPLAY IS NONE*/
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  flex-direction: column;
+}
+
+#fullscreenContent {
+  text-align: center;
+}
+
+#fullscreenName {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+#fullscreenTimer {
+  font-size: 4rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+#closeFullscreenBtn {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background: rgb(255, 65, 65);
+  color: var(--light);
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+#closeFullscreenBtn:active {
+  color: var(--dark);
+  background: var(--red);
+  transform: scale(1.1);
+}
+/* Countdown Item */
+.epochItem {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 15px;
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  color: white;
+  font-family: "Orbitron", sans-serif;
+  animation: fadeIn 0.2s linear;
+}
+
+/* Top row: name + edit + fullscreen */
+.epochMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.epochName {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Timer row: countdown + edit */
+.epochTimerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.epochTimeLeft {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+/* Buttons inside cards */
+.epochItem button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  color: white;
+  transition: 0.15s ease;
+}
+
+/* Hover effect — subtle glow */
+.epochItem button:hover {
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(1.1);
+}
+
+/* Optional smoother entry animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0px); }
+}
+
+/* Hidden class */
+.hidden {
+  display: none;
+}
