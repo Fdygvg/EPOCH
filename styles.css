@@ -195,7 +195,7 @@ header {
   position: fixed;
   top:0; left:0; right:0; bottom:0;
   background: rgba(0,0,0,0.9);
-  display: none; /*HERE THE DISPLAY IS NONE*/
+  display: flex; /*HERE THE DISPLAY IS NONE*/
   justify-content: center;
   align-items: center;
   z-index: 1000;
@@ -302,5 +302,5 @@ header {
 
 /* Hidden class */
 .hidden {
-  display: none;
+  display: none !important;
 }

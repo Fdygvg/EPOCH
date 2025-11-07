@@ -17,7 +17,7 @@ let epochs = [];
 
 // Show/hide form
 addBtn.addEventListener("click", () => {
-  formContainer.classList.remove("hidden");
+  formContainer.classList.toggle("hidden");
   countdownNameInput.value = "";
   countdownTimeInput.value = "";
   console.log('add button clicked')
@@ -124,7 +124,7 @@ function renderEpoch(epoch) {
   // Zoom / fullscreen
   zoomBtn.addEventListener("click", () => {
     fullscreenName.textContent = epoch.name;
-    fullscreenContainer.classList.remove("hidden");
+    fullscreenContainer.classList.toggle("hidden");
 
     function updateFullscreen() {
       const now = new Date();
@@ -147,6 +147,7 @@ function renderEpoch(epoch) {
     const fullscreenInterval = setInterval(updateFullscreen, 1000);
 
     closeFullscreenBtn.onclick = () => {
+        console.log("cLOSE bTN Clicked")
       clearInterval(fullscreenInterval);
       fullscreenContainer.classList.add("hidden");
     };
