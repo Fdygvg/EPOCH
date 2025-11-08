@@ -255,6 +255,11 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  
+}
+.epochMain::after {
+  content: " ";
+  position: absolute;
 }
 
 .epochName {

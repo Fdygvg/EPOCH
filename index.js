@@ -19,8 +19,8 @@ let epochs = [];
 addBtn.addEventListener("click", () => {
   formContainer.classList.toggle("hidden");
   countdownNameInput.value = "";
-  countdownTimeInput.value = "";
-  console.log('add button clicked')
+  countdownTimeInput.value = "12:00";
+  console.log("add button clicked");
 });
 
 // Cancel form
@@ -32,20 +32,28 @@ cancelBtn.addEventListener("click", () => {
 saveBtn.addEventListener("click", () => {
   const name = countdownNameInput.value.trim();
   const timeStr = countdownTimeInput.value;
+  localStorage.setItem(`${name}`, `${timeStr}`);
 
   if (!name || !timeStr) return alert("Please enter a name and time");
 
   // Convert time input into today's datetime
   const [hours, minutes] = timeStr.split(":").map(Number);
   const now = new Date();
-  const target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, 0);
+  const target = new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    hours,
+    minutes,
+    0
+  );
 
   const epoch = {
     id: Date.now(),
     name,
     target,
     element: null, // will hold DOM element
-    interval: null
+    interval: null,
   };
 
   epochs.push(epoch);
@@ -93,7 +101,9 @@ function renderEpoch(epoch) {
     }
 
     const h = String(Math.floor(diff / (1000 * 60 * 60))).padStart(2, "0");
-    const m = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
+    const m = String(
+      Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+    ).padStart(2, "0");
     const s = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, "0");
 
     timeSpan.textContent = `${h}:${m}:${s}`;
@@ -117,7 +127,14 @@ function renderEpoch(epoch) {
     if (newTime) {
       const [hours, minutes] = newTime.split(":").map(Number);
       const now = new Date();
-      epoch.target = new Date(now.getFullYear(), now.getMonth(), now.getDate(), hours, minutes, 0);
+      epoch.target = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        hours,
+        minutes,
+        0
+      );
     }
   });
 
@@ -137,8 +154,13 @@ function renderEpoch(epoch) {
       }
 
       const h = String(Math.floor(diff / (1000 * 60 * 60))).padStart(2, "0");
-      const m = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, "0");
-      const s = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, "0");
+      const m = String(
+        Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+      ).padStart(2, "0");
+      const s = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(
+        2,
+        "0"
+      );
 
       fullscreenTimer.textContent = `${h}:${m}:${s}`;
     }
@@ -147,9 +169,57 @@ function renderEpoch(epoch) {
     const fullscreenInterval = setInterval(updateFullscreen, 1000);
 
     closeFullscreenBtn.onclick = () => {
-        console.log("cLOSE bTN Clicked")
+      console.log("Close Full Screen Btn Clicked");
       clearInterval(fullscreenInterval);
       fullscreenContainer.classList.add("hidden");
     };
   });
 }
+
+function renderEpochLocalStorage(name, savedTime) {
+  let epoch = document.createElement("li");
+  epoch.className = "epochItem";
+  epoch.innerHTML = `
+    <div class="epochMain">
+      <span class="epochName">${name}</span>
+      <div class="buttons">
+        <button class="editNameBtn"><i class="fa-solid fa-pen"></i></button>
+        <button class="zoomBtn"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button>
+      </div>
+    </div>
+    <div class="epochTimerRow">
+      <span class="epochTimeLeft">${savedTime}</span>
+      <button class="editTimeBtn"><i class="fa-solid fa-clock"></i></button>
+    </div>
+  `;
+  countdownList.appendChild(epoch);
+}
+
+
+function loadEpoch() {
+  for (let i = 0; i < localStorage.length; i++) {
+    const name = localStorage.key(i);
+    const timeStr = localStorage.getItem(name);
+
+const[hours, minutes] = timeStr.split(":").map(Number);
+const now =new Date()
+const target =new Date(
+    now.getFullYear(),
+    now.getMonth(),
+    now.getDate(),
+    hours,
+    minutes,
+    0
+);
+const epoch = {
+    id: Date.now(),
+    name,
+    target,
+    element: null,
+    interval: null
+};
+epochs.push(epoch)
+renderEpoch(epoch)
+  }
+}
+loadEpoch()
