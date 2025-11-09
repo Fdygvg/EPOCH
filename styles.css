@@ -1,6 +1,7 @@
 :root {
   --light: white;
   --dark: black;
+
   --primary: #3b82f6;
   --secondary: #9333ea;
   --accent: #ff8800;
@@ -257,10 +258,19 @@ header {
   justify-content: space-between;
   
 }
-.epochMain::after {
-  content: " ";
+.deleteBtn {
+  content: "\f1f8";
+font-family: "Font Awesome 6 Free";
+font-weight: bold;
+font-size: 20px;
+z-index: 2;
   position: absolute;
+  right: 15px;
+  bottom: 70px;
+  transition: all .5s ease;
 }
+
+
 
 .epochName {
   font-size: 1.3rem;
@@ -299,6 +309,11 @@ header {
   transform: scale(1.1);
 }
 
+.epochItem button.deleteBtn:active i{
+  transform: scale(1.3);
+  color: rgb(73, 73, 73);
+
+}
 /* Optional smoother entry animation */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(6px); }

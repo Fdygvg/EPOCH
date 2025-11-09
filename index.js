@@ -6,7 +6,6 @@ const cancelBtn = document.getElementById("cancelCountdownBtn");
 const countdownNameInput = document.getElementById("countdownName");
 const countdownTimeInput = document.getElementById("countdownTime");
 const countdownList = document.getElementById("countdownList");
-
 const fullscreenContainer = document.getElementById("fullscreenContainer");
 const fullscreenName = document.getElementById("fullscreenName");
 const fullscreenTimer = document.getElementById("fullscreenTimer");
@@ -72,6 +71,7 @@ function renderEpoch(epoch) {
       <div class="buttons">
         <button class="editNameBtn"><i class="fa-solid fa-pen"></i></button>
         <button class="zoomBtn"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button>
+        <button class="deleteBtn"><i class="fa-solid fa-trash trashIcon"></i></button>
       </div>
     </div>
     <div class="epochTimerRow">
@@ -88,6 +88,7 @@ function renderEpoch(epoch) {
   const editNameBtn = li.querySelector(".editNameBtn");
   const editTimeBtn = li.querySelector(".editTimeBtn");
   const zoomBtn = li.querySelector(".zoomBtn");
+  const deleteBtn =li.querySelector(".deleteBtn")
 
   // Countdown update function
   function updateCountdown() {
@@ -174,7 +175,17 @@ function renderEpoch(epoch) {
       fullscreenContainer.classList.add("hidden");
     };
   });
+
+  deleteBtn.addEventListener("click", (e)=>{
+ if(confirm("Delete this epoch?")){
+  e.currentTarget.closest(".epochItem").remove();
+  const name = e.currentTarget.closest(".epochItem").querySelector(".epochName").textContent;
+    localStorage.removeItem(name);
+ };
+})
 }
+
+
 
 function renderEpochLocalStorage(name, savedTime) {
   let epoch = document.createElement("li");
@@ -185,6 +196,8 @@ function renderEpochLocalStorage(name, savedTime) {
       <div class="buttons">
         <button class="editNameBtn"><i class="fa-solid fa-pen"></i></button>
         <button class="zoomBtn"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button>
+        <button class="deleteBtn"><i class="fa-solid fa-trash trashIcon"></i></button>
+
       </div>
     </div>
     <div class="epochTimerRow">
@@ -223,3 +236,6 @@ renderEpoch(epoch)
   }
 }
 loadEpoch()
+
+
+
